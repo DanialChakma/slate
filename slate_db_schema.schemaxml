@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">slate_db_new</database>
+</source>
+<canvas zoom="70">
+<tables>
+<table name="answer_options" view="colnames">
+<left>121</left>
+<top>881</top>
+<width>191</width>
+<height>123</height>
+<sql_create_table>CREATE TABLE `answer_options` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `key` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `body` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `answer_options_question_id_foreign` (`question_id`),
+  CONSTRAINT `answer_options_question_id_foreign` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="client_companies" view="colnames">
+<left>196</left>
+<top>3</top>
+<width>204</width>
+<height>126</height>
+<sql_create_table>CREATE TABLE `client_companies` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remarks` text COLLATE utf8mb4_unicode_ci,
+  `industry_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `client_companies_industry_id_foreign` (`industry_id`),
+  CONSTRAINT `client_companies_industry_id_foreign` FOREIGN KEY (`industry_id`) REFERENCES `industries` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="client_company_contact_people" view="colnames">
+<left>547</left>
+<top>4</top>
+<width>212</width>
+<height>155</height>
+<sql_create_table>CREATE TABLE `client_company_contact_people` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `designation` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remarks` text COLLATE utf8mb4_unicode_ci,
+  `client_company_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `client_company_contact_people_client_company_id_foreign` (`client_company_id`),
+  CONSTRAINT `client_company_contact_people_client_company_id_foreign` FOREIGN KEY (`client_company_id`) REFERENCES `client_companies` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="client_company_contact_people_meeting" view="colnames">
+<left>907</left>
+<top>11</top>
+<width>312</width>
+<height>125</height>
+<sql_create_table>CREATE TABLE `client_company_contact_people_meeting` (
+  `client_company_contact_person_id` int(10) unsigned NOT NULL,
+  `meeting_id` int(10) unsigned NOT NULL,
+  KEY `contact_people_meeting_contact_person_id_foreign` (`client_company_contact_person_id`),
+  KEY `client_company_contact_people_meeting_meeting_id_foreign` (`meeting_id`),
+  CONSTRAINT `client_company_contact_people_meeting_meeting_id_foreign` FOREIGN KEY (`meeting_id`) REFERENCES `meetings` (`id`),
+  CONSTRAINT `contact_people_meeting_contact_person_id_foreign` FOREIGN KEY (`client_company_contact_person_id`) REFERENCES `client_company_contact_people` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="departments" view="colnames">
+<left>2</left>
+<top>239</top>
+<width>143</width>
+<height>111</height>
+<sql_create_table>CREATE TABLE `departments` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="industries" view="colnames">
+<left>27</left>
+<top>0</top>
+<width>118</width>
+<height>102</height>
+<sql_create_table>CREATE TABLE `industries` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="meeting_survery_results" view="colnames">
+<left>345</left>
+<top>586</top>
+<width>210</width>
+<height>231</height>
+<sql_create_table>CREATE TABLE `meeting_survery_results` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `msisdn` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'mobile number',
+  `survey_id` int(10) unsigned NOT NULL,
+  `meeting_id` int(10) unsigned NOT NULL,
+  `question_id` int(10) unsigned NOT NULL,
+  `answer_option_id` int(10) unsigned DEFAULT NULL,
+  `sent_params_to_sgw` text COLLATE utf8mb4_unicode_ci,
+  `sgw_response` text COLLATE utf8mb4_unicode_ci,
+  `sgw_message_id` bigint(20) DEFAULT NULL,
+  `sgw_delivery_receipts` text COLLATE utf8mb4_unicode_ci,
+  `sgw_status` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `failed_for_no_balance` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'SMS Sending Failed for No balance FLAG. 0 means false,1 means true.',
+  `failed_for_other_reason` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'SMS Sending Failed for Other reason.',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `meeting_survery_results_survey_id_foreign` (`survey_id`),
+  KEY `meeting_survery_results_meeting_id_foreign` (`meeting_id`),
+  KEY `meeting_survery_results_question_id_foreign` (`question_id`),
+  KEY `meeting_survery_results_answer_option_id_foreign` (`answer_option_id`),
+  CONSTRAINT `meeting_survery_results_answer_option_id_foreign` FOREIGN KEY (`answer_option_id`) REFERENCES `answer_options` (`id`),
+  CONSTRAINT `meeting_survery_results_meeting_id_foreign` FOREIGN KEY (`meeting_id`) REFERENCES `meetings` (`id`),
+  CONSTRAINT `meeting_survery_results_question_id_foreign` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`),
+  CONSTRAINT `meeting_survery_results_survey_id_foreign` FOREIGN KEY (`survey_id`) REFERENCES `surveys` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="meeting_user" view="colnames">
+<left>384</left>
+<top>434</top>
+<width>161</width>
+<height>94</height>
+<sql_create_table>CREATE TABLE `meeting_user` (
+  `user_id` int(10) unsigned NOT NULL,
+  `meeting_id` int(10) unsigned NOT NULL,
+  KEY `meeting_user_user_id_foreign` (`user_id`),
+  KEY `meeting_user_meeting_id_foreign` (`meeting_id`),
+  CONSTRAINT `meeting_user_meeting_id_foreign` FOREIGN KEY (`meeting_id`) REFERENCES `meetings` (`id`),
+  CONSTRAINT `meeting_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="meetings" view="colnames">
+<left>683</left>
+<top>167</top>
+<width>198</width>
+<height>232</height>
+<sql_create_table>CREATE TABLE `meetings` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Meeting Location.',
+  `status` enum('Initiated','Completed','Rescheduled','Cancelled') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Initiated',
+  `remarks` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `project_id` int(10) unsigned NOT NULL,
+  `client_company_id` int(10) unsigned NOT NULL,
+  `survey_id` int(10) unsigned DEFAULT NULL,
+  `all_sms_sent` tinyint(1) NOT NULL DEFAULT '0',
+  `survey_duration_over` tinyint(1) NOT NULL DEFAULT '0',
+  `start_time` datetime NOT NULL,
+  `end_time` datetime DEFAULT NULL,
+  `outlook_event_id` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `meetings_project_id_foreign` (`project_id`),
+  KEY `meetings_client_company_id_foreign` (`client_company_id`),
+  KEY `meetings_survey_id_foreign` (`survey_id`),
+  CONSTRAINT `meetings_client_company_id_foreign` FOREIGN KEY (`client_company_id`) REFERENCES `client_companies` (`id`),
+  CONSTRAINT `meetings_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`),
+  CONSTRAINT `meetings_survey_id_foreign` FOREIGN KEY (`survey_id`) REFERENCES `surveys` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="projects" view="colnames">
+<left>202</left>
+<top>136</top>
+<width>196</width>
+<height>124</height>
+<sql_create_table>CREATE TABLE `projects` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `department_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `projects_department_id_foreign` (`department_id`),
+  CONSTRAINT `projects_department_id_foreign` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="question_survey" view="colnames">
+<left>1075</left>
+<top>751</top>
+<width>195</width>
+<height>104</height>
+<sql_create_table>CREATE TABLE `question_survey` (
+  `question_id` int(10) unsigned NOT NULL,
+  `survey_id` int(10) unsigned NOT NULL,
+  KEY `question_survey_question_id_foreign` (`question_id`),
+  KEY `question_survey_survey_id_foreign` (`survey_id`),
+  CONSTRAINT `question_survey_question_id_foreign` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`),
+  CONSTRAINT `question_survey_survey_id_foreign` FOREIGN KEY (`survey_id`) REFERENCES `surveys` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="questions" view="colnames">
+<left>647</left>
+<top>794</top>
+<width>168</width>
+<height>124</height>
+<sql_create_table>CREATE TABLE `questions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `body` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('Numeric','Non-Numeric') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="surveys" view="colnames">
+<left>906</left>
+<top>501</top>
+<width>154</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `surveys` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remarks` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `department_id` int(10) unsigned NOT NULL,
+  `project_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `surveys_department_id_foreign` (`department_id`),
+  KEY `surveys_project_id_foreign` (`project_id`),
+  CONSTRAINT `surveys_department_id_foreign` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`),
+  CONSTRAINT `surveys_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="users" view="colnames">
+<left>188</left>
+<top>370</top>
+<width>130</width>
+<height>201</height>
+<sql_create_table>CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activated` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Confirms Email Activation if enabled.',
+  `role_id` int(10) unsigned NOT NULL DEFAULT '4',
+  `department_id` int(10) unsigned DEFAULT NULL,
+  `supervisor_id` int(10) unsigned DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  KEY `users_role_id_foreign` (`role_id`),
+  KEY `users_department_id_foreign` (`department_id`),
+  KEY `users_supervisor_id_foreign` (`supervisor_id`),
+  CONSTRAINT `users_department_id_foreign` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`),
+  CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
+  CONSTRAINT `users_supervisor_id_foreign` FOREIGN KEY (`supervisor_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="roles" view="colnames">
+<left>13</left>
+<top>593</top>
+<width>94</width>
+<height>114</height>
+<sql_create_table>CREATE TABLE `roles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

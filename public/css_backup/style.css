@@ -1,0 +1,573 @@
+/*
+Theme Name: Slate	
+Author URI: http://SSD-TECH.com
+ */
+img {
+	height: auto;
+	max-width: 100%;
+	width: initial;
+}
+/*Checkboxes styles*/
+/*
+input[type="checkbox"] {
+	display: none;
+}*/
+input[type="checkbox"] + label {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 20px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+input[type="checkbox"] + label:last-child {
+	margin-bottom: 0;
+}
+input[type="checkbox"] + label:before {
+	content: '';
+	display: block;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #000;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: .6;
+	-webkit-transition: all .12s, border-color .08s;
+	transition: all .12s, border-color .08s;
+}
+input[type="checkbox"]:checked + label:before {
+	width: 10px;
+	top: -5px;
+	left: 5px;
+	border-radius: 0;
+	opacity: 1;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+/*radio input styles*/
+/*
+input[type="checkbox"] {
+	display: none;
+}*/
+input[type="radio"] + label {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 20px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+input[type="radio"] + label:last-child {
+	margin-bottom: 0;
+}
+input[type="radio"] + label:before {
+	content: '';
+	display: block;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #000;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: .6;
+	-webkit-transition: all .12s, border-color .08s;
+	transition: all .12s, border-color .08s;
+}
+input[type="radio"]:checked + label:before {
+	width: 10px;
+	top: -5px;
+	left: 5px;
+	border-radius: 0;
+	opacity: 1;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+
+.padding {
+	padding: 5em 0;
+}
+.sm-padding {
+	padding: 2em 0 5em 0;
+}
+.top-area {
+	background-color: #fff;
+	box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.14);
+	/*margin-bottom: 3em;*/
+}
+.logo-area {
+	float: left;
+	padding-top: 20px;
+	margin-right: 5%;
+}
+.user-area {
+	float: right;
+}
+h1 {
+	color: #7f7f7f
+}
+span.slate-logo {
+	float: left;
+	width: 70px;
+}
+
+span.quann-logo img {
+	margin-top: 6px;
+}
+.login-area {
+}
+.login-box {
+	bottom: 0;
+	height: 50vh;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	top: 0;
+	width: 300px;
+}
+.login-box form, .login-box input[type="submit"] {
+	margin: 0;
+}
+.login-panel {
+	background-color: #fff;
+	box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
+	margin: 30px 0;
+	padding: 40px 20px;
+}
+span.quann-logo {
+	border-left: 1px solid #ccc;
+	float: left;
+	margin-left: 12px;
+	padding-left: 12px;
+	width: 90px;
+}
+.overlay {
+	display: table;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.83);
+	z-index: 20;
+}
+.overlayshow {
+	display: none
+}
+.overlay-content {
+	display: table-cell;
+	vertical-align: middle;
+}
+.modal-box {
+	background-color: #fff;
+	padding: 2.5em;
+	width: 90%;
+	max-width: 400px;
+	text-align: left;
+	display: table;
+	margin: 0 auto 0 auto;
+}
+.modal-box h3 {
+	font-size: 2.5rem
+}
+.modal-box form, .modal-box input[type="submit"] {
+	margin-bottom: 0
+}
+.modal-box input[type="checkbox"], .modal-box input[type="radio"] {
+	float: left;
+	margin-right: 10px;
+}
+.modal-box label {
+	line-height: 100%;
+	float: left;
+}
+.close-btn {
+	position: absolute;
+	top: 1%;
+	right: 1%;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+}
+.close-btn img {
+	width: 100%
+}
+html.disable-scroll {
+	overflow: hidden;
+}
+.width-content { max-width: 800px}
+.center-btn { margin-top: 2em; text-align:center}
+
+/********* menu  ************/
+
+.nav {
+	float: left;
+}
+.notify-number {
+	font-size: 10px;
+	position: absolute;
+	top: 17px;
+	right: 11px;
+	color: #fff;
+	padding: 4px;
+	line-height: 100%;
+	border-radius: 50px;
+	background-color: #ffa12f;
+}
+.nav ul li.avatar > a {
+	padding: 19px 0;
+}
+.avatar a span {
+	border-radius: 50px;
+	background-color: #ffa12f;
+	color: #fff;
+	padding: 6px 14px;
+	display: inline-block;
+	text-align: center;
+}
+.nav ul li.avatar ul {
+	right: 0;
+	left: initial;
+}
+.mobile-menu {
+	display: none
+}
+.sqmenu {
+	float: left;
+	width: 32px;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-left: 10px;
+}
+.content-area {
+	background-color: rgb(255, 255, 255);
+	box-shadow: 0px 2px 2px 0px rgba(4, 4, 4, 0.09);
+	padding: 3em;
+	margin-bottom: 4em;
+}
+.input-area {
+	float: left;
+	width: 100%
+}
+.half-col-label label, .input-area label {
+	width: 39.3333333333%;
+	margin-right: 4%;
+	float: left;
+	font-size: 1.3em;
+	height: 40px;
+	margin-bottom: 3rem;
+}
+.half-col-label input, .half-col-label select, .half-col-label textarea, .input-area input, .input-area select, .input-area textarea {
+	width: 56.6666666667%;
+	float: right;
+	box-shadow: none!important; 
+	border-radius: 0 !important;
+}
+.columns input, .columns select, .columns label {
+	width: 100%;
+}
+.input-icon {
+	padding-right: 28px !important;
+	background-repeat: no-repeat;
+	background-position: 98% center
+}
+.icon-calender {
+	background-image: url(../images/icon-calender.png)
+}
+.icon-time {
+	background-image: url(../images/icon-time.png)
+}
+.icon-email {
+	background-image: url(../images/icon-email.png)
+}
+.icon-phone {
+	background-image: url(../images/icon-phone.png)
+}
+input.sbtn {
+	width: auto; margin-left: 2%;
+}
+input.sbtn:not(:first-child) { margin-right: 0}
+input.sbtn.gray { background-color: #272727}
+.big-btn-area {
+	margin-top: 4em;
+	text-align: center
+}
+.big-btn-area a:nth-child(2) {
+	margin: 0 5%
+}
+a.big-btn, .big-btn a {
+text-decoration: none;
+   
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px 25px;
+    background-color: #252b47;
+    line-height: 38px;
+    color: #FFFFFF;
+    display: inline-block;
+    transition: all 0.45s ease;
+	box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.24);
+	font-weight: bold;
+}
+a.redbtn {
+	background-color: #9B0204
+}
+a.yellowbtn {
+	background-color: #C48C00
+}
+a:hover.big-btn, .big-btn a:hover {
+        color:#FFFFFF !important;
+	background-color: #282828;
+	transition: all 0.45s ease;
+}
+.meeting-alert {
+	background-color: #fff;
+	width: 300px;
+	position: fixed;
+	bottom: 3%;
+	right: 0%;
+	box-shadow: 0 0 50px 0px rgba(0, 0, 0, 0.21);
+	display: none;
+}
+.meeting-alert h4 {
+	font-size: 1.8rem;
+	color: #252b47;
+	font-weight: bold;
+}
+.meeting-alert h5 {
+	border-bottom: solid 1px #ccc;
+	padding: 12px 20px;
+}
+.meeting-content-area {
+	padding: 0 1.5em;
+	width: 100%;
+	height: 220px;
+	overflow: auto;
+}
+.single-meeting {
+	width: 100%;
+	float: left;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-bottom: solid 1px #ccc
+}
+.single-meeting:last-child {
+	margin-bottom: 0;
+	border: none;
+	padding-bottom: none
+}
+.m-btnarea {
+	margin-top: 10px;
+	margin-bottom: 1em;
+	margin-right: 1em;
+	float: right;
+}
+.smbtn a, a.smbtn {
+	display: inline-block;
+	padding: 5px 15px;
+	color: #fff;
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-decoration: none;
+	white-space: nowrap;
+	cursor: pointer;
+	box-sizing: border-box;
+	border: none;
+	background-color: rgb(255, 161, 47);
+}
+
+.box {
+    border: solid 1px #ccc;
+    border-radius: 6px;
+    padding: 2rem; margin-bottom: 4%;
+}
+.box h3 { font-weight: bold; color: #787b7f}
+.big-number { float: left; font-size: 4.2rem; font-weight: bold;color: #787b7f;    line-height: 100%;}
+.list-btn { float: right; text-transform: capitalize; margin-top: 20px}
+.list-btn a { color: #fff; background-color: #202c5c; padding: 5px 10px; text-decoration: none}
+.answer-list {margin-bottom: 3rem;}
+.answer-list ul { margin: 0;display: initial;}
+.answer-list li {
+       display: inline-block;
+    margin-right: 9%;
+    text-align: center;
+    font-size: 1.8rem;
+}
+.answer-list a {
+    display: inline-block; float: right; color: #fff; background-color: #202c5c; padding: 3px 10px; text-decoration: none;font-size: 13px;
+    
+}
+.each-q-report {
+    margin-top: 5em;
+}
+.q-number {
+    background-color: #252b47;
+    color: #fff;
+    float: left;
+    font-size: 2.5rem;
+    line-height: 100%;
+    padding: 10px;
+    margin-right: 2%;
+}
+.q-title {
+    font-weight: bold;padding: 10px 0;
+}
+.q-title span {    background-color: #252b47;
+    color: #fff;
+    float: right;
+    font-size: 12px;
+    line-height: 100%;
+    padding: 3px 6px;
+    margin-left: 2%;}
+.a-review ul {
+    margin: 0;
+}
+.a-review li {
+   display: inline-block;
+    margin-right: 8%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.a-review li strong {font-weight: normal;
+    color: #252b47;}
+
+a.action-btn {
+	background-color: #252b47;
+    font-size: 10px;
+    display: inline-block;
+    padding: 6px 14px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    /* border-radius: 3px; */
+}
+
+a.action-btn:hover {
+	background-color: #ffa12f;
+    color: white !important;
+}
+@media only screen and (max-width: 600px) {
+h1 {
+	margin-left: 5%;
+}
+.main-menu {
+	display: none
+}
+.mobile-menu {
+	display: block
+}
+.logo-area {
+	padding-top: 7px;
+	width: 44%;
+}
+.slate-logo img, .quann-logo img {
+	width: 58px;
+}
+span.quann-logo {
+	padding-left: 10px;
+	margin-left: 10px;
+}
+.user-area .nav > ul > li > a {
+	padding: 6px;
+}
+.content-area {
+	padding: 1em;
+}
+.half-col-label label, .input-area label {
+	width: 100%;
+	margin: 0;
+	font-size: 1.2em;
+	height: auto;
+}
+.half-col-label input, .half-col-label select, .half-col-label textarea, .input-area input, .input-area select, .input-area textarea {
+	width: 100%;
+}
+	.width-content, .modal-box { max-width: 300px; padding: 1em}
+	.modal-box .table-content {
+   
+    max-width: 300px;
+    max-height: 300px;
+}
+	.q-title {
+    
+    padding: 0;
+}
+	.a-review {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+}
+
+.google-map{
+  float:right !important;
+  width:500px;
+  height:300px;
+margin-bottom:3rem;
+
+}
+
+div.contact{
+	border-radius: 40px;
+	box-shadow: 0px 2px 2px 0px rgba(4, 4, 4, 0.09);
+	padding: 10px;
+}
+div.client{
+	border-radius: 40px;
+	box-shadow: 0px 2px 2px 0px rgba(4, 4, 4, 0.09);
+	padding: 10px;
+}
+
+div.question{
+	/*border-radius: 40px;
+	box-shadow: 0px 2px 2px 0px rgba(4, 4, 4, 0.09); */
+        margin-top: 10px;
+	padding: 30px;
+	background-color: #f9f9f9;
+}
+
+div.quann_staff {
+	margin: 5px 5px;
+	border-radius: 40px;
+	box-shadow: 0px 2px 2px 0px #d9edf7;
+	padding: 10px;
+}
+input.icon-icon-left {
+	background-position: 1% center;
+	background-repeat: no-repeat;
+	padding-left: 28px !important;
+}
+.icon-user {
+	background-image: url("../images/icon-user.png");
+}
+input, textarea, select, fieldset {
+	margin-bottom: 3rem;
+}
+.icon-key {
+	background-image: url("../images/icon-key.png");
+}
+input[type="password"], textarea, select {
+	border-color: #fff #fff #b5b5b5;
+	border-style: solid;
+	border-width: 1px;
+	padding: 10px;
+	transition: all 0.7s ease 0s;
+	width: 100%;
+}
+
+
